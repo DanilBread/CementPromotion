@@ -1,0 +1,43 @@
+package adapter.impl;
+
+import adapter.OrderSource;
+import model.Order;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public final class TxtOrderAdapter implements OrderSource {
+    private final TxtReader reader = new TxtReader();
+
+    @Override
+    public List<Order> read(String fileName) {
+        List<Order> orders = new ArrayList<>();
+        List<String> lines = reader.loadLines((fileName));
+        lines.stream()
+                .filter(line -> !line.isBlank())
+                .forEach(line -> {
+                    try {
+                        String[] parts = line.split("\\|");
+                        if (parts.length != 3) {
+                            System.err.printf("Ошибка чтения файла: %s\n", fileName);
+                        }
+                        LocalDateTime dateTime = LocalDateTime.parse(parts[0].trim());
+                        String companyName = parts[1].trim();
+                        int quantity = Integer.parseInt(parts[2].trim());
+
+                        orders.add(new Order(dateTime, companyName, quantity));
+
+                    } catch (NumberFormatException e) {
+                        System.err.printf("Ошибка парсинга: %s\n", line);
+                    }
+                });
+
+        System.out.printf("Прочитано %d строк из файла: %s\n\n", orders.size(), fileName);
+        return orders;
+    }
+
+
+}
