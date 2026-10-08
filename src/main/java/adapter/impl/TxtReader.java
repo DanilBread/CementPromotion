@@ -11,7 +11,7 @@ public final class TxtReader {
             return Files.readAllLines(Paths.get(fileName));
         }
         catch (IOException e) {
-            throw new RuntimeException("Не удалось прочитать файл: " + fileName + e);
+            throw new FileReadException("Не удалось прочитать файл: " + fileName, e);
         }
     }
 }

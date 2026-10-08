@@ -3,6 +3,7 @@ package adapter.impl;
 import adapter.OrderSource;
 import model.Order;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +24,15 @@ public abstract class OrderReadAndSplit implements OrderSource {
                     try {
                         String[] parts = line.split(splitCharacter);
                         if (parts.length != 3) {
-                            System.err.printf("Ошибка чтения файла: %s\n", fileName);
+                             throw new FileReadException("Неккоректный формат строки. Файл: " + fileName);
                         }
                         LocalDateTime dateTime = LocalDateTime.parse(parts[0].trim());
                         String companyName = parts[1].trim();
                         int quantity = Integer.parseInt(parts[2].trim());
-
                         orders.add(new Order(dateTime, companyName, quantity));
 
-                    } catch (NumberFormatException e) {
-                        System.err.printf("Ошибка парсинга: %s\n", line);
+                    } catch (NumberFormatException | DateTimeException e) {
+                        throw new FileReadException("Ошибка парсинга строки. Файл: " + fileName, e);
                     }
                 });
 
