@@ -1,4 +1,4 @@
-package model;
+package com.cementpromotion.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

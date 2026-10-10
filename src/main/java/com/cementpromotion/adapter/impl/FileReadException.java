@@ -1,4 +1,4 @@
-package adapter.impl;
+package com.cementpromotion.adapter.impl;
 
 public class FileReadException extends RuntimeException {
 

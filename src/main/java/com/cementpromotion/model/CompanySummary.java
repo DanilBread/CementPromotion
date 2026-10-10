@@ -1,4 +1,4 @@
-package model;
+package com.cementpromotion.model;
 
 
 public class CompanySummary {

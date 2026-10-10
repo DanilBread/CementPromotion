@@ -1,6 +1,8 @@
-import adapter.OrderSource;
-import adapter.impl.UnifieldOrderSource;
-import model.*;
+package com.cementpromotion;
+
+import com.cementpromotion.adapter.OrderSource;
+import com.cementpromotion.adapter.impl.UnifieldOrderSource;
+import com.cementpromotion.model.*;
 
 import java.io.IOException;
 import java.util.List;

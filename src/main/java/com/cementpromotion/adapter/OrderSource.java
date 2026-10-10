@@ -1,6 +1,6 @@
-package adapter;
+package com.cementpromotion.adapter;
 
-import model.Order;
+import com.cementpromotion.model.Order;
 import java.util.List;
 
 public interface OrderSource {
