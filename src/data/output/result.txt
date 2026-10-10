@@ -1,0 +1,12 @@
+Pyramid - 6565000.00 рублей
+Preparatory - 12846000.00 рублей
+Electricity - 3128000.00 рублей
+Industrial - 7920000.00 рублей
+Power Engineer - 42080000.00 рублей
+Mosque - 24840000.00 рублей
+Carryover - 28186500.00 рублей
+Fossil - 13720000.00 рублей
+Resident - 5610000.00 рублей
+Atomic - 10000000.00 рублей
+Recovery - 5670000.00 рублей
+Ancillary - 30000000.00 рублей
