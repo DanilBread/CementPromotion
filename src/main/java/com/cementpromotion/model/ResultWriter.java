@@ -22,7 +22,7 @@ public class ResultWriter {
         Objects.requireNonNull(summaries, "Сводка данных не должна быть пустой");
         log.debug("Вывод в консоль : {} записей", summaries.size());
         for (CompanySummary summary : summaries.values()) {
-            System.out.println(formatLine(summary));
+            log.info(formatLine(summary));
         }
         log.info("Результат выведен в консоль: {} записей", summaries.size());
     }

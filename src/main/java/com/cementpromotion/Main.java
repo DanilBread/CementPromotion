@@ -18,7 +18,7 @@ public class Main {
         DiscountProcessor discountProcessor = new DiscountProcessor();
         BigDecimal beginPercent = new BigDecimal("50.0");
         BigDecimal stepPercent = new BigDecimal("5.0");
-        BigDecimal price = new BigDecimal("10.0");
+        BigDecimal price = new BigDecimal("1000.0");
 
         discountProcessor.process(orders, price, beginPercent, stepPercent);
 

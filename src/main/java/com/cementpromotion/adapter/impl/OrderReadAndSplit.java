@@ -26,33 +26,28 @@ public abstract class OrderReadAndSplit implements OrderSource {
         List<Order> orders = new ArrayList<>();
         List<String> lines = reader.loadLines((fileName));
         log.debug("Загружено {} строк из файла: {}", lines.size(), fileName);
-        lines.stream()
-                .filter(line -> {
-                    boolean blank = line.isBlank();
-                    if (blank) {
-                        log.trace("Пропущена пустая строка в файле {}: ", fileName);
-                    }
-                    return !blank;
-                })
-                .forEach(line -> {
-                    try {
-                        String[] parts = line.split(splitCharacter);
-                        if (parts.length != 3) {
-                            log.error("Неверное количество полей ({} вместо 3) в строке '{}', файл: {}",
-                                    parts.length, line, fileName);
-                            throw new FileReadException("Неккоректный формат строки. Файл: " + fileName);
-                        }
-                        LocalDateTime dateTime = LocalDateTime.parse(parts[0].trim());
-                        String companyName = parts[1].trim();
-                        int quantity = Integer.parseInt(parts[2].trim());
-                        orders.add(new Order(dateTime, companyName, quantity));
-                        log.trace("Разобран заказ: {} | {} | {}", dateTime, companyName, quantity);
+        for (String line : lines) {
+            if (line.isBlank()) {
+                log.trace("Пропущена пустая строка в файле {}: ", fileName);
+            }
+            try {
+                String[] parts = line.split(splitCharacter);
+                if (parts.length != 3) {
+                    log.error("Неверное количество полей ({} вместо 3) в строке '{}', файл: {}",
+                            parts.length, line, fileName);
+                    throw new FileReadException("Некорректный формат строки. Файл: " + fileName);
+                }
+                LocalDateTime dateTime = LocalDateTime.parse(parts[0].trim());
+                String companyName = parts[1].trim();
+                int quantity = Integer.parseInt(parts[2].trim());
+                orders.add(new Order(dateTime, companyName, quantity));
+                log.trace("Разобран заказ: {} | {} | {}", dateTime, companyName, quantity);
 
-                    } catch (NumberFormatException | DateTimeException e) {
-                        log.error("Ошибка парсинга строки '{}', файл: {}", line, fileName, e);
-                        throw new FileReadException("Ошибка парсинга строки. Файл: " + fileName, e);
-                    }
-                });
+            } catch (NumberFormatException | DateTimeException e) {
+                log.error("Ошибка парсинга строки '{}', файл: {}", line, fileName, e);
+                throw new FileReadException("Ошибка парсинга строки. Файл: " + fileName, e);
+            }
+        }
 
         log.info("Прочитано {} заказов из файла: {}", orders.size(), fileName);
         return orders;
