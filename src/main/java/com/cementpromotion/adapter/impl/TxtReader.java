@@ -1,15 +1,14 @@
 package com.cementpromotion.adapter.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+@Slf4j
 public final class TxtReader {
-    private static Logger log = LoggerFactory.getLogger(TxtReader.class);
     public List<String> loadLines(String fileName) {
         try {
             log.debug("Прочитан файл: {}", fileName);

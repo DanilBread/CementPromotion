@@ -2,6 +2,7 @@ package com.cementpromotion.model;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,7 +60,7 @@ public class ResultWriter {
         return summary.getCompany() + " - " + formatMoney(summary.getFinalTotal()) + " рублей";
     }
 
-    private String formatMoney(double value) {
+    private String formatMoney(BigDecimal value) {
         return String.format(Locale.US, "%.2f", value);
     }
 }

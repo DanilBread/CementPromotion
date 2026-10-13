@@ -5,6 +5,7 @@ import com.cementpromotion.adapter.impl.UnifieldOrderSource;
 import com.cementpromotion.model.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +16,10 @@ public class Main {
         List<Order> orders = source.read(fileName);
 
         DiscountProcessor discountProcessor = new DiscountProcessor();
-        double beginPercent = 50.0;
-        double stepPercent = 5.0;
-        double price = 1000;
+        BigDecimal beginPercent = new BigDecimal("50.0");
+        BigDecimal stepPercent = new BigDecimal("5.0");
+        BigDecimal price = new BigDecimal("10.0");
+
         discountProcessor.process(orders, price, beginPercent, stepPercent);
 
         CompanyResultAggregator aggregator = new CompanyResultAggregator();

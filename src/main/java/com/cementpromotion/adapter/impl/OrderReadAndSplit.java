@@ -3,8 +3,7 @@ package com.cementpromotion.adapter.impl;
 import com.cementpromotion.adapter.OrderSource;
 import com.cementpromotion.model.Order;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -12,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+@Slf4j
 public abstract class OrderReadAndSplit implements OrderSource {
     private final TxtReader reader = new TxtReader();
-    private static final Logger log = LoggerFactory.getLogger(OrderReadAndSplit.class);
+
 
     public List<Order> read(String filename) {
+
         log.debug("Запуск чтения заказов из файла: {}, разделитель: {}", filename, getDelimiter());
         return readAndSplit(filename, getDelimiter());
     }

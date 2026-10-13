@@ -1,11 +1,9 @@
 package com.cementpromotion.adapter.impl;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 public final class TxtOrderAdapter extends OrderReadAndSplit {
-    private static final Logger log = LoggerFactory.getLogger(TxtOrderAdapter.class);
 
     @Override
     public String getDelimiter() {

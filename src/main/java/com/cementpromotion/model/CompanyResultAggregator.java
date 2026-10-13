@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 public class CompanyResultAggregator {
-    private static final Logger log = LoggerFactory.getLogger(CompanyResultAggregator.class);
     public Map<String, CompanySummary> aggregate(List<Order> orders) {
         Objects.requireNonNull(orders, "Заказы не могут быть null");
         log.debug("Начало агрегации: получено {} заказов", orders.size());

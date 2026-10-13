@@ -3,15 +3,13 @@ package com.cementpromotion.adapter.impl;
 import com.cementpromotion.adapter.OrderSource;
 import com.cementpromotion.model.Order;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
+@Slf4j
 public final class UnifieldOrderSource implements OrderSource {
     private final TxtOrderAdapter txtAdapter = new TxtOrderAdapter();
     private final NoExtOrderAdapter noExtOrderAdapter = new NoExtOrderAdapter();
-    private static final Logger log = LoggerFactory.getLogger(UnifieldOrderSource.class);
 
     @Override
     public List<Order> read(String fileName) {
