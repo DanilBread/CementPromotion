@@ -8,8 +8,9 @@ import java.util.List;
 
 @Slf4j
 public final class UnifieldOrderSource implements OrderSource {
-    private final TxtOrderAdapter txtAdapter = new TxtOrderAdapter();
-    private final NoExtOrderAdapter noExtOrderAdapter = new NoExtOrderAdapter();
+    private final TxtReader reader = new TxtReader();
+    private final TxtOrderAdapter txtAdapter = new TxtOrderAdapter(reader);
+    private final NoExtOrderAdapter noExtOrderAdapter = new NoExtOrderAdapter(reader);
 
     @Override
     public List<Order> read(String fileName) {

@@ -13,8 +13,11 @@ import java.util.List;
 
 @Slf4j
 public abstract class OrderReadAndSplit implements OrderSource {
-    private final TxtReader reader = new TxtReader();
+    private final TxtReader reader;
 
+    public OrderReadAndSplit(TxtReader reader) {
+        this.reader = reader;
+    }
 
     public List<Order> read(String filename) {
 
@@ -29,6 +32,7 @@ public abstract class OrderReadAndSplit implements OrderSource {
         for (String line : lines) {
             if (line.isBlank()) {
                 log.trace("Пропущена пустая строка в файле {}: ", fileName);
+                continue;
             }
             try {
                 String[] parts = line.split(splitCharacter);
